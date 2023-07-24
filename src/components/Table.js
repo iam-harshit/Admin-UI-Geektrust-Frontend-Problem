@@ -1,190 +1,195 @@
 import React from "react";
+import Search from "./Search";
 
 function Table() {
   return (
-    <div className="relative overflow-x-auto shadow-xl rounded sm:rounded-t md:rounded-b-lg lg:rounded-b-lg">
-      <table className="w-[1000px] max-w-[2000px] text-sm text-left font-poppins text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:text-gray-400">
+    <div>
+      <Search/>
+      <br/>
+    <div className="main">
+      <table className="table">
+        <thead className="table-head">
           <tr>
-            <th scope="col" className="p-4">
-              <div className="flex items-center">
+            <th scope="col" className="head-cell">
+              <div className="checkbox-container">
                 <input
                   id="checkbox-all-search"
                   type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  className="checkbox"
                 />
-                <label htmlFor="checkbox-all-search" className="sr-only">
+                <label htmlFor="checkbox-all-search" className="sr">
                   checkbox
                 </label>
               </div>
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="col-name">
               Name
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="col-name">
               Email
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="col-name">
               Role
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="col-name">
               Action
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
+          <tr className="table-row">
+            <td className="table-desc">
+              <div className="checkbox-container">
                 <input
                   id="checkbox-table-search-1"
                   type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  className="checkbox"
                 />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
+                <label htmlFor="checkbox-table-search-1" className="sr">
                   checkbox
                 </label>
               </div>
             </td>
-            <td className="px-6 py-4">John</td>
-            <td className="px-6 py-4">john@gmail.com</td>
-            <td className="px-6 py-4">Member</td>
-            <td className="flex items-center px-6 py-4 space-x-3">
-              <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+            <td className="table-data">John</td>
+            <td className="table-data">john@gmail.com</td>
+            <td className="table-data">Member</td>
+            <td className="table-action">
+              <button className="edit-btn">
                 Edit
               </button>
-              <button className="font-medium text-red-600 dark:text-red-500 hover:underline">
+              <button className="remove-btn">
                 Remove
               </button>
             </td>
           </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
+          <tr className="table-row">
+            <td className="table-desc">
+              <div className="checkbox-container">
                 <input
                   id="checkbox-table-search-2"
                   type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  className="checkbox"
                 />
-                <label htmlFor="checkbox-table-search-2" className="sr-only">
+                <label htmlFor="checkbox-table-search-2" className="sr">
                   checkbox
                 </label>
               </div>
             </td>
-            <td className="px-6 py-4">Abhay</td>
-            <td className="px-6 py-4">abhay@abc.com</td>
-            <td className="px-6 py-4">Member</td>
-            <td className="flex items-center px-6 py-4 space-x-3">
-              <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+            <td className="table-data">Abhay</td>
+            <td className="table-data">abhay@abc.com</td>
+            <td className="table-data">Member</td>
+            <td className="table-action">
+              <button className="edit-btn">
                 Edit
               </button>
-              <button className="font-medium text-red-600 dark:text-red-500 hover:underline">
+              <button className="remove-btn">
                 Remove
               </button>
             </td>
           </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
+          <tr className="table-row">
+            <td className="table-desc">
+              <div className="checkbox-container">
                 <input
                   id="checkbox-table-search-3"
                   type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  className="checkbox"
                 />
-                <label htmlFor="checkbox-table-search-3" className="sr-only">
+                <label htmlFor="checkbox-table-search-3" className="sr">
                   checkbox
                 </label>
               </div>
             </td>
-            <td className="px-6 py-4">Rick</td>
-            <td className="px-6 py-4">rick@xyz.com</td>
-            <td className="px-6 py-4">Admin</td>
-            <td className="flex items-center px-6 py-4 space-x-3">
-              <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+            <td className="table-data">Rick</td>
+            <td className="table-data">rick@xyz.com</td>
+            <td className="table-data">Admin</td>
+            <td className="table-action">
+              <button className="edit-btn">
                 Edit
               </button>
-              <button className="font-medium text-red-600 dark:text-red-500 hover:underline">
+              <button className="remove-btn">
                 Remove
               </button>
             </td>
           </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
+          <tr className="table-row">
+            <td className="table-desc">
+              <div className="checkbox-container">
                 <input
                   id="checkbox-table-search-3"
                   type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  className="checkbox"
                 />
-                <label htmlFor="checkbox-table-search-3" className="sr-only">
+                <label htmlFor="checkbox-table-search-3" className="sr">
                   checkbox
                 </label>
               </div>
             </td>
-            <td className="px-6 py-4">Lina</td>
-            <td className="px-6 py-4">lina@gmail.com</td>
-            <td className="px-6 py-4">Member</td>
-            <td className="flex items-center px-6 py-4 space-x-3">
-              <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+            <td className="table-data">Lina</td>
+            <td className="table-data">lina@gmail.com</td>
+            <td className="table-data">Member</td>
+            <td className="table-action">
+              <button className="edit-btn">
                 Edit
               </button>
-              <button className="font-medium text-red-600 dark:text-red-500 hover:underline">
+              <button className="remove-btn">
                 Remove
               </button>
             </td>
           </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
+          <tr className="table-row">
+            <td className="table-desc">
+              <div className="checkbox-container">
                 <input
                   id="checkbox-table-search-3"
                   type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  className="checkbox"
                 />
-                <label htmlFor="checkbox-table-search-3" className="sr-only">
+                <label htmlFor="checkbox-table-search-3" className="sr">
                   checkbox
                 </label>
               </div>
             </td>
-            <td className="px-6 py-4">Mark</td>
-            <td className="px-6 py-4">mark@yahoo.com</td>
-            <td className="px-6 py-4">Admin</td>
-            <td className="flex items-center px-6 py-4 space-x-3">
-              <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+            <td className="table-data">Mark</td>
+            <td className="table-data">mark@yahoo.com</td>
+            <td className="table-data">Admin</td>
+            <td className="table-action">
+              <button className="edit-btn">
                 Edit
               </button>
-              <button className="font-medium text-red-600 dark:text-red-500 hover:underline">
+              <button className="remove-btn">
                 Remove
               </button>
             </td>
           </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
+          <tr className="table-row">
+            <td className="table-desc">
+              <div className="checkbox-container">
                 <input
                   id="checkbox-table-search-3"
                   type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  className="checkbox"
                 />
-                <label htmlFor="checkbox-table-search-3" className="sr-only">
+                <label htmlFor="checkbox-table-search-3" className="sr">
                   checkbox
                 </label>
               </div>
             </td>
-            <td className="px-6 py-4">Sanjay</td>
-            <td className="px-6 py-4">sanjay@edc.com</td>
-            <td className="px-6 py-4">Member</td>
-            <td className="flex items-center px-6 py-4 space-x-3">
-              <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+            <td className="table-data">Sanjay</td>
+            <td className="table-data">sanjay@edc.com</td>
+            <td className="table-data">Member</td>
+            <td className="table-action">
+              <button className="edit-btn">
                 Edit
               </button>
-              <button className="font-medium text-red-600 dark:text-red-500 hover:underline">
+              <button className="remove-btn">
                 Remove
               </button>
             </td>
           </tr>
         </tbody>
       </table>
+    </div>
     </div>
   );
 }
