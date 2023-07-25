@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Table from "./components/Table";
 import {apiUrl} from "./data";
 import {toast} from "react-toastify";
+import Spinner from "./components/Spinner";
 
 function App() {
   const [tableData, setTableData] = useState(null);
@@ -9,11 +10,11 @@ function App() {
   //handling state of spinner
   const [loading, setLoading] = useState(true);
 
-  function fetchData() {
+  async function fetchData() {
     setLoading(true);
     try {
-      const response = fetch(apiUrl);
-      const output = response.json();
+      const response = await fetch(apiUrl);
+      const output = await response.json();
       setTableData(output);
     } catch (error) {
       toast.error("Something went wrong");
@@ -23,11 +24,13 @@ function App() {
 
   useEffect( () =>{
     fetchData();
-  },[])
+  },[]);
 
   return (
     <div className="app">
-      <Table tableData={tableData} />
+    {
+      loading ? (<Spinner/>) : (<Table tableData={tableData}/>)
+    }
     </div>
   );
 }
