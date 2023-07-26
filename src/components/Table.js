@@ -1,8 +1,10 @@
 import React from "react";
 import Search from "./Search";
+import NotFound from "./NotFound";
 
 function Table(props) {
   const tableData = props.tableData;
+  const removeDataHandler = props.removeDataHandler;
   let userData = [];
 
   function getTableData() {
@@ -47,31 +49,40 @@ function Table(props) {
             </tr>
           </thead>
           <tbody>
-            {getTableData().map((user) => {
-              return (
-                <tr className="table-row" key={user.id}>
-                  <td className="table-desc">
-                    <div className="checkbox-container">
-                      <input
-                        id="checkbox-table-search-1"
-                        type="checkbox"
-                        className="checkbox"
-                      />
-                      <label htmlFor="checkbox-table-search-1" className="sr">
-                        checkbox
-                      </label>
-                    </div>
-                  </td>
-                  <td className="table-data">{user.name}</td>
-                  <td className="table-data">{user.email}</td>
-                  <td className="table-data">{user.role}</td>
-                  <td className="table-action">
-                    <button className="edit-btn">Edit</button>
-                    <button className="remove-btn">Remove</button>
-                  </td>
-                </tr>
-              );
-            })}
+            {tableData.length !== 0 ? (
+              getTableData().map((user) => {
+                return (
+                  <tr className="table-row" key={user.id}>
+                    <td className="table-desc">
+                      <div className="checkbox-container">
+                        <input
+                          id="checkbox-table-search-1"
+                          type="checkbox"
+                          className="checkbox"
+                        />
+                        <label htmlFor="checkbox-table-search-1" className="sr">
+                          checkbox
+                        </label>
+                      </div>
+                    </td>
+                    <td className="table-data">{user.name}</td>
+                    <td className="table-data">{user.email}</td>
+                    <td className="table-data">{user.role}</td>
+                    <td className="table-action">
+                      <button className="edit-btn">Edit</button>
+                      <button
+                        className="remove-btn"
+                        onClick={() => removeDataHandler(user.id)}
+                      >
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              <NotFound />
+            )}
           </tbody>
         </table>
       </div>

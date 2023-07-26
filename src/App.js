@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import Table from "./components/Table";
-import {apiUrl} from "./data";
-import {toast} from "react-toastify";
+import { apiUrl } from "./data";
+import { toast } from "react-toastify";
 import Spinner from "./components/Spinner";
 
 function App() {
-  const [tableData, setTableData] = useState(null);
+  const [tableData, setTableData] = useState([]);
 
   //handling state of spinner
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   async function fetchData() {
     setLoading(true);
@@ -22,15 +22,23 @@ function App() {
     setLoading(false);
   }
 
-  useEffect( () =>{
+  useEffect(() => {
     fetchData();
-  },[]);
+  }, []);
+
+  function removeDataHandler(id) {
+    const newTableData = tableData.filter((data) => data.id !== id);
+    toast.success("Deleted successfully");
+    setTableData(newTableData);
+  }
 
   return (
     <div className="app">
-    {
-      loading ? (<Spinner/>) : (<Table tableData={tableData}/>)
-    }
+      {loading ? (
+        <Spinner />
+      ) : (
+        <Table tableData={tableData} removeDataHandler={removeDataHandler} />
+      )}
     </div>
   );
 }
