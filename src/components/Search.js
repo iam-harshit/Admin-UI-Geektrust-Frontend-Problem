@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 
 function Search(props) {
-    const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
-    const searchHandler = (event) => {
-      setSearch(event.target.value);
-  
-      const filteredData = props.userData.filter(user =>
+  const searchHandler = (event) => {
+    setSearch(event.target.value);
+
+    const filteredData = props.userData.filter(
+      (user) =>
         user.name.toLowerCase().startsWith(event.target.value.toLowerCase()) ||
         user.email.toLowerCase().startsWith(event.target.value.toLowerCase()) ||
         user.role.toLowerCase().startsWith(event.target.value.toLowerCase())
-      );
-  
-      props.setTableData(filteredData);
-    }
+    );
+
+    props.setTableData(filteredData);
+  };
 
   return (
     <div className="searchbar-container">
