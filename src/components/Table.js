@@ -8,7 +8,8 @@ function Table(props) {
   const setTableData = props.setTableData;
   const removeDataHandler = props.removeDataHandler;
   let userData = [];
-  const[checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const [selectedRowIds, setSelectedRowIds] = useState([]);
 
   function getTableData() {
     tableData.forEach((user) => {
@@ -21,19 +22,21 @@ function Table(props) {
     let checkboxes = document.querySelectorAll(".checkbox");
     checkboxes.forEach((checkbox) => {
       checkbox.checked = event.target.checked; // Correctly set the checked property
+      setSelectedRowIds(tableData.map((user) => user.id));
     });
     setChecked(event.target.checked); // Correctly set the state to the checked property of the event target
   }
 
-  function deSelectTHeadCheckboxAfterDeleteRows(){
+  function deSelectTHeadCheckboxAfterDeleteRows() {
     let checkbox = document.getElementById("checkbox-all-search");
     checkbox.checked = false;
     setChecked(checkbox);
+    setSelectedRowIds([]);
   }
 
   return (
     <div className="container">
-      <Search userData={userData} setTableData={setTableData}/>
+      <Search userData={userData} setTableData={setTableData} />
       <br />
       <div className="main">
         <table className="table">
@@ -78,6 +81,16 @@ function Table(props) {
                           id="row-checkbox"
                           type="checkbox"
                           className="checkbox"
+                          checked={selectedRowIds.includes(user.id)}
+                          onChange={(event) => {
+                            if (event.target.checked) {
+                              setSelectedRowIds([...selectedRowIds, user.id]);
+                            } else {
+                              setSelectedRowIds(
+                                selectedRowIds.filter((id) => id !== user.id)
+                              );
+                            }
+                          }}
                         />
                         <label htmlFor="checkbox-table-search-1" className="sr">
                           checkbox
@@ -106,10 +119,13 @@ function Table(props) {
         </table>
       </div>
       <DeleteSelectedButton
-        checked={checked}
-        userData={userData}
+        selectedRowIds={selectedRowIds}
+        setSelectedRowIds={setSelectedRowIds}
+        userData={tableData}
         setTableData={setTableData}
-        deSelectTHeadCheckboxAfterDeleteRows={deSelectTHeadCheckboxAfterDeleteRows}
+        deSelectTHeadCheckboxAfterDeleteRows={
+          deSelectTHeadCheckboxAfterDeleteRows
+        }
       />
     </div>
   );

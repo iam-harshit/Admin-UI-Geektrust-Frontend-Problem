@@ -1,25 +1,33 @@
 import React from "react";
 import { toast } from "react-toastify";
 
-function DeleteSelectedButton(props) {
+function DeleteSelectedButton({
+  userData,
+  setTableData,
+  selectedRowIds,
+  deSelectTHeadCheckboxAfterDeleteRows,
+}) {
+  // const setTableData = props.setTableData;
+  // const deSelectTHeadCheckboxAfterDeleteRows = props.deSelectTHeadCheckboxAfterDeleteRows;
 
-    const setTableData = props.setTableData;
-    const deSelectTHeadCheckboxAfterDeleteRows = props.deSelectTHeadCheckboxAfterDeleteRows;
+  function deleteSelected() {
+    const newUserData = userData.filter(
+      (user) => !selectedRowIds.includes(user.id)
+    );
 
-    function deleteSelected(){
-        let userData = props.userData;
-        const checked = props.checked;
-        if(checked){
-          userData = [];
-          toast.success("Selected rows deleted successfully");
-          setTableData(userData);
-          deSelectTHeadCheckboxAfterDeleteRows();
-        }
-      }
+    if (newUserData.length === userData.length) return;
+
+    toast.success("Selected row deleted successfully");
+    setTableData(newUserData);
+    // Clear selection after deletion
+    deSelectTHeadCheckboxAfterDeleteRows();
+  }
 
   return (
     <div>
-        <button className="deleted-btn" onClick={deleteSelected}>Delete Selected</button>
+      <button className="deleted-btn" onClick={deleteSelected}>
+        Delete Selected
+      </button>
     </div>
   );
 }
