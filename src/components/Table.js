@@ -33,7 +33,7 @@ function Table(props) {
 
   return (
     <div className="container">
-      <Search />
+      <Search userData={userData} setTableData={setTableData}/>
       <br />
       <div className="main">
         <table className="table">
