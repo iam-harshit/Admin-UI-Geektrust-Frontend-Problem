@@ -37,7 +37,11 @@ function App() {
       {loading ? (
         <Spinner />
       ) : (
-        <Table tableData={tableData} setTableData={setTableData} removeDataHandler={removeDataHandler} />
+        <Table
+          tableData={tableData}
+          setTableData={setTableData}
+          removeDataHandler={removeDataHandler}
+        />
       )}
     </div>
   );
