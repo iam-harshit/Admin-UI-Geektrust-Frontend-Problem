@@ -37,7 +37,7 @@ function App() {
       {loading ? (
         <Spinner />
       ) : (
-        <Table tableData={tableData} removeDataHandler={removeDataHandler} />
+        <Table tableData={tableData} setTableData={setTableData} removeDataHandler={removeDataHandler} />
       )}
     </div>
   );

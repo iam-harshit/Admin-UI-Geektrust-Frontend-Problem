@@ -1,9 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Search from "./Search";
 import NotFound from "./NotFound";
+import DeleteSelectedButton from "./DeleteSelectedButton";
 
 function Table(props) {
   const tableData = props.tableData;
+  const setTableData = props.setTableData;
   const removeDataHandler = props.removeDataHandler;
   let userData = [];
   const[checked, setChecked] = useState(false);
@@ -15,27 +17,18 @@ function Table(props) {
     return userData;
   }
 
-  // function selectAllHandler(event){
-  //   let checkboxes = document.querySelectorAll('.checkbox');
-  //   if(event.target.checked){
-  //     checkboxes.forEach((checkbox) => {
-  //       checkbox.children[0].checked = false;
-  //       checkbox.parentElement.style.background = '#fff';
-  //     });
-  //   } else{
-  //     checkboxes.forEach((checkbox) => {
-  //       checkbox.parentElement.style.background = '#e0e0e0';
-  //     })
-  //   }
-  //   setChecked(event.target.value);
-  // }
-
-  function selectAllHandler(event){
-    let checkboxes = document.querySelectorAll('.checkbox'); // Changed id to class
+  function selectAllHandler(event) {
+    let checkboxes = document.querySelectorAll(".checkbox");
     checkboxes.forEach((checkbox) => {
       checkbox.checked = event.target.checked; // Correctly set the checked property
     });
     setChecked(event.target.checked); // Correctly set the state to the checked property of the event target
+  }
+
+  function deSelectTHeadCheckboxAfterDeleteRows(){
+    let checkbox = document.getElementById("checkbox-all-search");
+    checkbox.checked = false;
+    setChecked(checkbox);
   }
 
   return (
@@ -112,6 +105,12 @@ function Table(props) {
           </tbody>
         </table>
       </div>
+      <DeleteSelectedButton
+        checked={checked}
+        userData={userData}
+        setTableData={setTableData}
+        deSelectTHeadCheckboxAfterDeleteRows={deSelectTHeadCheckboxAfterDeleteRows}
+      />
     </div>
   );
 }
