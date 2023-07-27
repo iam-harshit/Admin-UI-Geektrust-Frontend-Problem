@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -18,7 +18,7 @@
     --btn-hover: #60abff;
 }
 
-.app{
+.app {
     background-color: #f6f8ff;
     width: 100%;
     min-height: 100vh;
@@ -28,19 +28,19 @@
     align-items: center;
 }
 
-.container{
+.container {
     margin-top: 60px;
     margin-bottom: 60px;
 }
 
-.main{
+.main {
     position: relative;
     overflow-x: auto;
     box-shadow: 0 20px 25px -5px rgba(70, 96, 187, 0.2);
     border-radius: 4px;
 }
 
-.table{
+.table {
     width: 1000px;
     max-width: 2000px;
     font-size: 14px;
@@ -50,7 +50,7 @@
     border-spacing: 0 2px;
 }
 
-.table-head{
+.table-head {
     font-size: 12px;
     line-height: 16px;
     color: rgb(55 65 81);
@@ -58,16 +58,16 @@
     background-color: rgb(249 250 251);
 }
 
-.head-cell{
+.head-cell {
     padding: 15px;
 }
 
-.checkbox-container{
+.checkbox-container {
     display: flex;
     align-items: center;
 }
 
-.checkbox{
+.checkbox {
     width: 16px;
     height: 16px;
     color: rgb(37 99 235);
@@ -77,12 +77,12 @@
     cursor: pointer;
 }
 
-.checkbox:focus{
+.checkbox:focus {
     --tw-ring-color: rgb(59 130 246);
     box-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 }
 
-.sr{
+.sr {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -94,34 +94,34 @@
     border-width: 0;
 }
 
-.col-name{
+.col-name {
     padding-left: 24px;
     padding-right: 24px;
     padding-top: 12px;
     padding-bottom: 12px;
 }
 
-.table-row{
+.table-row {
     background-color: #fefefe;
 }
 
-.table-row:hover{
+.table-row:hover {
     background-color: #f9fafb;
 }
 
-.table-desc{
+.table-desc {
     width: 16px;
     padding: 16px;
 }
 
-.table-data{
+.table-data {
     padding-left: 24px;
     padding-right: 24px;
     padding-top: 16px;
     padding-bottom: 16px;
 }
 
-.table-action{
+.table-action {
     display: flex;
     align-items: center;
     padding-left: 24px;
@@ -131,29 +131,29 @@
     gap: 10px;
 }
 
-.edit-btn{
+.edit-btn {
     all: unset;
     font-weight: 500;
     color: #3B82F6;
 }
 
-.edit-btn:hover{
+.edit-btn:hover {
     text-decoration-line: underline;
     cursor: pointer;
 }
 
-.remove-btn{
+.remove-btn {
     all: unset;
     font-weight: 500;
     color: #EF4444;
 }
 
-.remove-btn:hover{
+.remove-btn:hover {
     text-decoration-line: underline;
     cursor: pointer;
 }
 
-.searchbar-container{
+.searchbar-container {
     position: relative;
     background-color: var(--lm-bg-content);
     border-radius: 4px;
@@ -170,7 +170,7 @@
     background-size: 20px;
 }
 
-#input{
+#input {
     border: none;
     width: 80%;
     outline: none;
@@ -179,19 +179,20 @@
     padding-left: 50px;
 }
 
-#input::placeholder{
+#input::placeholder {
     color: var(--lm-text);
     letter-spacing: -0.5px;
-    font-size: 13px;;
+    font-size: 13px;
+    ;
 }
 
-.searchbar-container img{
+.searchbar-container img {
     height: 20px;
     width: 20px;
     padding: 0px 10px 0px 16px;
 }
 
-.btn-search{
+.btn-search {
     min-width: 84px;
     padding: 12px 16px;
     background-color: var(--btn);
@@ -202,16 +203,16 @@
     font-weight: bold;
 }
 
-.btn-search:hover{
+.btn-search:hover {
     cursor: pointer;
     background-color: var(--btn-hover);
 }
 
-.btn-search:active{
+.btn-search:active {
     transform: scale(0.975);
 }
 
-.spinner-container{
+.spinner-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -219,7 +220,7 @@
     margin-top: 8px;
 }
 
-.spinner-text{
+.spinner-text {
     color: #6B7280;
     font-size: 18px;
     line-height: 28px;
@@ -231,10 +232,10 @@
     height: 56px;
     display: grid;
     animation: spinner-plncf9 4s infinite;
- }
- 
- .spinner::before,
- .spinner::after {
+}
+
+.spinner::before,
+.spinner::after {
     content: "";
     grid-area: 1/1;
     border: 9px solid;
@@ -242,25 +243,27 @@
     border-color: #474bff #474bff #0000 #0000;
     mix-blend-mode: darken;
     animation: spinner-plncf9 1s infinite linear;
- }
- 
- .spinner::after {
+}
+
+.spinner::after {
     border-color: #0000 #0000 #dbdcef #dbdcef;
     animation-direction: reverse;
- }
- 
- @keyframes spinner-plncf9 {
-    100% {
-       transform: rotate(1turn);
-    }
- }
+}
 
- .not-found{
+@keyframes spinner-plncf9 {
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+.not-found {
+    text-align: center;
+    vertical-align: middle;
     background-color: #fefefe;
 
- }
+}
 
- .deleted-btn{
+.deleted-btn {
     all: unset;
     border-radius: 5px;
     border: none;
@@ -270,9 +273,9 @@
     color: #fff;
     cursor: pointer;
     font-size: 14px;
- }
+}
 
- .deleted-btn:hover{
+.deleted-btn:hover {
     cursor: pointer;
     background-color: #f87171;
- }
+}
