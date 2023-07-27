@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Search from "./Search";
 import NotFound from "./NotFound";
 
@@ -6,12 +6,36 @@ function Table(props) {
   const tableData = props.tableData;
   const removeDataHandler = props.removeDataHandler;
   let userData = [];
+  const[checked, setChecked] = useState(false);
 
   function getTableData() {
     tableData.forEach((user) => {
       userData.push(user);
     });
     return userData;
+  }
+
+  // function selectAllHandler(event){
+  //   let checkboxes = document.querySelectorAll('.checkbox');
+  //   if(event.target.checked){
+  //     checkboxes.forEach((checkbox) => {
+  //       checkbox.children[0].checked = false;
+  //       checkbox.parentElement.style.background = '#fff';
+  //     });
+  //   } else{
+  //     checkboxes.forEach((checkbox) => {
+  //       checkbox.parentElement.style.background = '#e0e0e0';
+  //     })
+  //   }
+  //   setChecked(event.target.value);
+  // }
+
+  function selectAllHandler(event){
+    let checkboxes = document.querySelectorAll('.checkbox'); // Changed id to class
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = event.target.checked; // Correctly set the checked property
+    });
+    setChecked(event.target.checked); // Correctly set the state to the checked property of the event target
   }
 
   return (
@@ -28,6 +52,8 @@ function Table(props) {
                     id="checkbox-all-search"
                     type="checkbox"
                     className="checkbox"
+                    value={checked}
+                    onChange={selectAllHandler}
                   />
                   <label htmlFor="checkbox-all-search" className="sr">
                     checkbox
@@ -56,7 +82,7 @@ function Table(props) {
                     <td className="table-desc">
                       <div className="checkbox-container">
                         <input
-                          id="checkbox-table-search-1"
+                          id="row-checkbox"
                           type="checkbox"
                           className="checkbox"
                         />

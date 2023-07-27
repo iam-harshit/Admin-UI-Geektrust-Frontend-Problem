@@ -74,6 +74,7 @@
     background-color: rgb(243 244 246);
     border-color: rgb(209 213 219);
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .checkbox:focus{
@@ -252,4 +253,9 @@
     100% {
        transform: rotate(1turn);
     }
+ }
+
+ .not-found{
+    background-color: #fefefe;
+
  }
