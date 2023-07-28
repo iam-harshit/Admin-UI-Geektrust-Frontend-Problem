@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Search from "./Search";
 import NotFound from "./NotFound";
 import DeleteSelectedButton from "./DeleteSelectedButton";
@@ -7,16 +7,21 @@ function Table(props) {
   const tableData = props.tableData;
   const setTableData = props.setTableData;
   const removeDataHandler = props.removeDataHandler;
-  let userData = [];
+  // let userData = [];
   const [checked, setChecked] = useState(false);
   const [selectedRowIds, setSelectedRowIds] = useState([]);
+  const [filteredData, setFilteredData] = useState([...tableData]);
 
-  function getTableData() {
-    tableData.forEach((user) => {
-      userData.push(user);
-    });
-    return userData;
-  }
+  useEffect(() => {
+    setFilteredData(tableData);
+  }, [tableData]);
+
+  // function getTableData() {
+  //   tableData.forEach((user) => {
+  //     userData.push(user);
+  //   });
+  //   return userData;
+  // }
 
   function selectAllHandler(event) {
     let checkboxes = document.querySelectorAll(".checkbox");
@@ -36,7 +41,7 @@ function Table(props) {
 
   return (
     <div className="container">
-      <Search userData={userData} setTableData={setTableData} />
+      <Search userData={tableData} setFilteredData={setFilteredData} />
       <br />
       <div className="main">
         <table className="table">
@@ -71,8 +76,8 @@ function Table(props) {
             </tr>
           </thead>
           <tbody>
-            {tableData.length !== 0 ? (
-              getTableData().map((user) => {
+            {filteredData.length !== 0 ? (
+              filteredData.map((user) => {
                 return (
                   <tr className="table-row" key={user.id}>
                     <td className="table-desc">

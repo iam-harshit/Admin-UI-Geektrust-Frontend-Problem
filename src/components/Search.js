@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-function Search(props) {
+function Search({ userData, setFilteredData }) {
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    if (!search) {
+      setFilteredData(userData);
+      return;
+    }
+
+    const filteredData = userData.filter(
+      (user) =>
+        user.name.toLowerCase().includes(search.toLowerCase()) ||
+        user.email.toLowerCase().includes(search.toLowerCase()) ||
+        user.role.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredData(filteredData);
+  }, [search, userData, setFilteredData]);
 
   const searchHandler = (event) => {
     setSearch(event.target.value);
-
-    const filteredData = props.userData.filter(
-      (user) =>
-        user.name.toLowerCase().startsWith(event.target.value.toLowerCase()) ||
-        user.email.toLowerCase().startsWith(event.target.value.toLowerCase()) ||
-        user.role.toLowerCase().startsWith(event.target.value.toLowerCase())
-    );
-
-    props.setTableData(filteredData);
   };
 
   return (
@@ -27,7 +33,7 @@ function Search(props) {
         onChange={searchHandler}
         required
       />
-      <button className="btn-search" id="submit">
+      <button className="btn-search" id="submit" onClick={searchHandler}>
         Search
       </button>
     </div>
