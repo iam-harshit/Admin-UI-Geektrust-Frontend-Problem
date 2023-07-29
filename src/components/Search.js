@@ -33,9 +33,6 @@ function Search({ userData, setFilteredData }) {
         onChange={searchHandler}
         required
       />
-      <button className="btn-search" id="submit" onClick={searchHandler}>
-        Search
-      </button>
     </div>
   );
 }
