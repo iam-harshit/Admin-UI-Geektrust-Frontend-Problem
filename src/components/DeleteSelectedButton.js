@@ -7,8 +7,6 @@ function DeleteSelectedButton({
   selectedRowIds,
   deSelectTHeadCheckboxAfterDeleteRows,
 }) {
-  // const setTableData = props.setTableData;
-  // const deSelectTHeadCheckboxAfterDeleteRows = props.deSelectTHeadCheckboxAfterDeleteRows;
 
   function deleteSelected() {
     const newUserData = userData.filter(
