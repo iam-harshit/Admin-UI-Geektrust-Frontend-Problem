@@ -1,6 +1,6 @@
 import React from "react";
 
-function Pagination({ currentPage, totalPages, changePage }) {
+function Pagination({ currentPage, totalPages, changePage, dataLength }) {
   return (
     <div className="pagination">
       <button
@@ -33,14 +33,14 @@ function Pagination({ currentPage, totalPages, changePage }) {
       <button
         className="page-btn"
         onClick={() => changePage(currentPage + 1)}
-        disabled={currentPage === totalPages}
+        disabled={currentPage === totalPages || dataLength === 0}
       >
         {">"}
       </button>
       <button
         className="page-btn"
         onClick={() => changePage(totalPages)}
-        disabled={currentPage === totalPages}
+        disabled={currentPage === totalPages || dataLength === 0}
       >
         {">>"}
       </button>
