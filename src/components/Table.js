@@ -1,35 +1,64 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import TableRow from "./TableRow";
 import Search from "./Search";
 import NotFound from "./NotFound";
 import DeleteSelectedButton from "./DeleteSelectedButton";
+import Pagination from "./Pagination";
+import EditModal from "./EditModal";
 
-function Table(props) {
-  const tableData = props.tableData;
-  const setTableData = props.setTableData;
-  const removeDataHandler = props.removeDataHandler;
-  // let userData = [];
+function Table({ tableData, setTableData, removeDataHandler }) {
   const [checked, setChecked] = useState(false);
+  const headerCheckboxRef = useRef();
   const [selectedRowIds, setSelectedRowIds] = useState([]);
   const [filteredData, setFilteredData] = useState([...tableData]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentEditingUser, setCurrentEditingUser] = useState(null);
+
+  const itemsPerPage = 10;
 
   useEffect(() => {
     setFilteredData(tableData);
   }, [tableData]);
 
-  // function getTableData() {
-  //   tableData.forEach((user) => {
-  //     userData.push(user);
-  //   });
-  //   return userData;
-  // }
+  useEffect(() => {
+    setCurrentPage(1); // reset to first page when data changes
+  }, [filteredData]);
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  const paginatedData = filteredData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  function changePage(newPage) {
+    if (newPage < 1 || newPage > totalPages) {
+      return; // ignore invalid page numbers
+    }
+    headerCheckboxRef.current.checked = false;
+    setCurrentPage(newPage);
+  }
 
   function selectAllHandler(event) {
     let checkboxes = document.querySelectorAll(".checkbox");
-    checkboxes.forEach((checkbox) => {
-      checkbox.checked = event.target.checked; // Correctly set the checked property
-      setSelectedRowIds(tableData.map((user) => user.id));
+    let tableRows = document.querySelectorAll(".table-row");
+
+    checkboxes?.forEach((checkbox, index) => {
+      checkbox.checked = event.target.checked;
+      if (checkbox.checked && tableRows[index]) {
+        tableRows[index].style.background = "#e9ecef"; // Set the row color to gray when the checkbox is selected
+      } else if (tableRows[index]) {
+        tableRows[index].style.background = ""; // Remove the row color when the checkbox is deselected
+      }
     });
-    setChecked(event.target.checked); // Correctly set the state to the checked property of the event target
+
+    if (event.target.checked) {
+      setSelectedRowIds(paginatedData.map((user) => user.id));
+    } else {
+      setSelectedRowIds([]);
+    }
+    setChecked(event.target.checked);
   }
 
   function deSelectTHeadCheckboxAfterDeleteRows() {
@@ -50,6 +79,7 @@ function Table(props) {
               <th scope="col" className="head-cell">
                 <div className="checkbox-container">
                   <input
+                    ref={headerCheckboxRef}
                     id="checkbox-all-search"
                     type="checkbox"
                     className="checkbox"
@@ -76,45 +106,20 @@ function Table(props) {
             </tr>
           </thead>
           <tbody>
-            {filteredData.length !== 0 ? (
-              filteredData.map((user) => {
+            {paginatedData.length !== 0 ? (
+              paginatedData.map((user) => {
                 return (
-                  <tr className="table-row" key={user.id}>
-                    <td className="table-desc">
-                      <div className="checkbox-container">
-                        <input
-                          id="row-checkbox"
-                          type="checkbox"
-                          className="checkbox"
-                          checked={selectedRowIds.includes(user.id)}
-                          onChange={(event) => {
-                            if (event.target.checked) {
-                              setSelectedRowIds([...selectedRowIds, user.id]);
-                            } else {
-                              setSelectedRowIds(
-                                selectedRowIds.filter((id) => id !== user.id)
-                              );
-                            }
-                          }}
-                        />
-                        <label htmlFor="checkbox-table-search-1" className="sr">
-                          checkbox
-                        </label>
-                      </div>
-                    </td>
-                    <td className="table-data">{user.name}</td>
-                    <td className="table-data">{user.email}</td>
-                    <td className="table-data">{user.role}</td>
-                    <td className="table-action">
-                      <button className="edit-btn">Edit</button>
-                      <button
-                        className="remove-btn"
-                        onClick={() => removeDataHandler(user.id)}
-                      >
-                        Remove
-                      </button>
-                    </td>
-                  </tr>
+                  <TableRow
+                    key={user.id}
+                    user={user}
+                    selectedRowIds={selectedRowIds}
+                    setSelectedRowIds={setSelectedRowIds}
+                    removeDataHandler={removeDataHandler}
+                    openEditModal={() => {
+                      setIsModalOpen(true);
+                      setCurrentEditingUser(user);
+                    }}
+                  />
                 );
               })
             ) : (
@@ -132,7 +137,23 @@ function Table(props) {
           deSelectTHeadCheckboxAfterDeleteRows
         }
       />
+      <div>
+        <Pagination
+          changePage={changePage}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          dataLength={filteredData.length}
+        />
+      </div>
+      <EditModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        currentEditingUser={currentEditingUser}
+        tableData={tableData}
+        setTableData={setTableData}
+      />
     </div>
   );
 }
+
 export default Table;
