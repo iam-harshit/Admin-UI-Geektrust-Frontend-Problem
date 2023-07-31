@@ -27,6 +27,7 @@ function Table({ tableData, setTableData, removeDataHandler }) {
 
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
+  //store data from filteredData to paginatedData
   const paginatedData = filteredData.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage

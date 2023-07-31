@@ -464,6 +464,10 @@
         width: 35px;
         height: 35px;
     }
+
+    .ReactModal__Content {
+        width: 60%;
+    }
 }
 
 /* ... Existing media queries for smaller screens here... */
@@ -532,6 +536,11 @@
         width: 30px;
         height: 30px;
     }
+
+    .ReactModal__Content {
+        width: 80%;
+    }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -604,5 +613,11 @@
         line-height: 11px;
         height: 25px;
         margin: auto;
+    }
+
+    .ReactModal__Content {
+        width: 80%;
+        height: 45vh;
+        
     }
 }
