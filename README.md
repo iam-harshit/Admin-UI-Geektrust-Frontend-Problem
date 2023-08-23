@@ -5,9 +5,9 @@
 Welcome to the ADMIN UI project - a solution to the Geektrust Frontend Problem. Built with scalability and optimization in mind, this React app showcases a dynamic data-driven interface that fetches data from a provided Geektrust API, all wrapped up in a highly responsive design.
 
 ## 📜 Table of Contents
-- [Features](#features) 🚀
-- [Installation](#installation) 🛠️
-- [Usage](#usage) 🧐
+- [Features](#-features) 🚀
+- [Installation](#-installation) 🛠️
+- [Usage](#-usage) 🧐
 
 ## 🚀 Features
 - **Data Fetching**: Seamlessly fetches and integrates data from the specified Geektrust API.
